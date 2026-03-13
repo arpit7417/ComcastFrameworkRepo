@@ -1,0 +1,79 @@
+   package com.comcast.crm.objectrepository.utility;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class HomePage {
+	
+	WebDriver driver;
+	public HomePage(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver,this);
+		
+	}
+	
+	@FindBy(linkText="Organizations")
+	private WebElement orgLink;
+	
+	@FindBy(linkText="Contacts")
+	private WebElement contactLink;
+	
+	@FindBy(linkText="Campaigns")
+	private WebElement Campaignlnk;
+	
+	@FindBy(linkText="More")
+	private WebElement morelnk;
+	
+
+	
+
+	@FindBy(xpath="//img[@src='themes/softed/images/user.PNG']")
+	private WebElement adminIMG;
+	
+
+	@FindBy(linkText = "Sign Out")
+	private WebElement signOutLink;
+
+	public WebElement getAdminIMG() {
+		return adminIMG;
+	}
+
+	public WebElement getSignOutLink() {
+		return signOutLink;
+	}
+	
+	
+	
+	public WebElement getCampaignlnk() {
+		return Campaignlnk;
+	}
+
+	public WebElement getMorelnk() {
+		return morelnk;
+	}
+
+	public WebElement getOrgLink() {
+		return orgLink;
+	}
+
+	public WebElement getContactLink() {
+		return contactLink;
+	}
+	
+	
+	public void navigateToCampaginPage() {
+		Actions act=new Actions(driver);
+		act.moveToElement(morelnk).perform();
+		Campaignlnk.click();
+	}
+	
+	public void logout() {
+		Actions act=new Actions(driver);
+		act.moveToElement(adminIMG).perform();
+		signOutLink.click();
+	}
+
+}
