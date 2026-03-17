@@ -98,7 +98,7 @@ public class BaseClassForGroup {
 	public void configAS() throws SQLException {
 		System.out.println("====close Db , Report backUP===");
 		dbLib.closeDbConnection();
-		report.flush(); 
+		//report.flush(); 
 	}
 	
 	

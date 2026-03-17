@@ -44,8 +44,12 @@ public class BaseClass {
 	@BeforeClass
 	public void confiBC() throws IOException {
 		System.out.println("===Launch the Browser====");
-		String BROWSER = fis.getDataFroamPropertiesFile("browser");
-		
+      //	String BROWSER = fis.getDataFroamPropertiesFile("browser");
+      	String BROWSER = System.getProperty("browser", fis.getDataFroamPropertiesFile("browser"));
+		// here we take data from cmd line 
+	//	String BROWSER = System.getProperty("browser");
+		// if we not pass the parameter then atleast pass the paremeter fron the property file
+	//	String BROWSER = System.getProperty("browser",fis.getDataFroamPropertiesFile("browser");
 		 
 	   
 	     
@@ -66,9 +70,20 @@ public class BaseClass {
      @BeforeMethod
      public void configBM() throws IOException {
 	System.out.println("=Login=");
-	String URL = fis.getDataFroamPropertiesFile("url");
+	
+  /*	String URL = fis.getDataFroamPropertiesFile("url");
 	String USERNAME = fis.getDataFroamPropertiesFile("username");
 	String PASSWORD = fis.getDataFroamPropertiesFile("password");
+	*/
+/*	String URL =  System.getProperty("url");
+	String USERNAME =  System.getProperty("username");
+	String PASSWORD =  System.getProperty("password");
+	*/
+	
+	String URL =  System.getProperty("url",fis.getDataFroamPropertiesFile("url"));
+	String USERNAME =  System.getProperty("username",fis.getDataFroamPropertiesFile("username"));
+	String PASSWORD =  System.getProperty("password", fis.getDataFroamPropertiesFile("password"));
+	
 	 LoginPage lp=new LoginPage(driver);
 	 
 	 lp.loginToapp(URL, USERNAME, PASSWORD);
